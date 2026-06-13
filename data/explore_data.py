@@ -1,0 +1,33 @@
+import pandas as pd
+
+print("=" * 60)
+print("CLEVELAND DATASET")
+print("=" * 60)
+df1 = pd.read_csv("cleveland.csv")
+print("Shape:", df1.shape)
+print("Missing values:\n", df1.isnull().sum())
+print("Target value counts:\n", df1['target'].value_counts())
+
+print("\n" + "=" * 60)
+print("HUNGARIAN DATASET")
+print("=" * 60)
+df2 = pd.read_csv("hungarian.csv")
+print("Shape:", df2.shape)
+print("Missing values:\n", df2.isnull().sum())
+print("Target value counts:\n", df2['target'].value_counts())
+
+print("\n" + "=" * 60)
+print("FRAMINGHAM DATASET")
+print("=" * 60)
+df3 = pd.read_csv("framingham.csv")
+print("Shape:", df3.shape)
+print("Columns:", list(df3.columns))
+print("Missing values:\n", df3.isnull().sum())
+
+print("\n" + "=" * 60)
+print("HEART FAILURE DATASET")
+print("=" * 60)
+df4 = pd.read_csv("heart_failure.csv")
+print("Shape:", df4.shape)
+print("Columns:", list(df4.columns))
+print("Missing values:\n", df4.isnull().sum())

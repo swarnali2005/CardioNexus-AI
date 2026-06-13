@@ -1,0 +1,42 @@
+Phase 1 - Centralized DNN (Cleveland only):
+Accuracy: 80.33%
+
+Phase 2 - FedAvg Baseline (Cleveland + Hungarian, 2 clients, 10 rounds):
+Final Accuracy: 72.5%
+Final Loss: 0.633
+
+Phase 3 - FedProx Hyperparameter Tuning (Cleveland + Hungarian, 10 rounds):
+mu=0.01 -> Final Accuracy: 71.7%
+mu=0.1  -> Final Accuracy: 82.5% (BEST - selected for next phases)
+mu=1.0  -> Final Accuracy: 55.8% (too strong, model frozen)
+
+Selected: FedProx with mu=0.1
+
+Phase 4 - FedProx + Adaptive DP-SGD (mu=0.1, 20 rounds):
+
+Privacy-Utility Trade-off (noise schedule -> final accuracy, final epsilon):
+1. noise 1.0->0.3  -> Accuracy: 76.7%, Epsilon: 74.9  (weak privacy)
+2. noise 1.5->1.0  -> Accuracy: 55.8%, Epsilon: 4.7   (strong privacy, underfits)
+3. noise 1.0->0.6  -> Accuracy: 78.3%, Epsilon: 15.2  (BEST BALANCE - selected)
+
+Selected configuration: noise_multiplier = max(1.0 - 0.02*(round-1), 0.6)
+Final Accuracy: 78.3%
+Final Epsilon: 15.2
+
+Phase 5 - Federated SHAP Explainability:
+
+Global Feature Importance Ranking (federated aggregation):
+1. exang (exercise-induced angina): 0.2914
+2. cp (chest pain type): 0.0450
+3. sex: 0.0337
+4. thalach (max heart rate): 0.0335
+5. oldpeak: 0.0172
+6. restecg: 0.0101
+7. fbs: 0.0043
+8. chol: 0.0023
+9. age: 0.0022
+10. trestbps: 0.0020
+
+Key Finding: Both hospitals independently rank 'exang' as the 
+dominant predictor (0.292 vs 0.291) - validates federated SHAP 
+consistency across heterogeneous client data without raw data sharing.
