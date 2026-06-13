@@ -40,3 +40,17 @@ Global Feature Importance Ranking (federated aggregation):
 Key Finding: Both hospitals independently rank 'exang' as the 
 dominant predictor (0.292 vs 0.291) - validates federated SHAP 
 consistency across heterogeneous client data without raw data sharing.
+
+Phase 6 - Fairness Evaluation (Fairlearn):
+
+Cleveland:
+  Gender gap (accuracy): 13.5% (Female 81.4% vs Male 68.0%)
+  Age gap (accuracy): 16.5% (Young 84.1% vs Old 67.6%)
+
+Hungarian:
+  Gender gap (accuracy): 7.1% (Female 86.4% vs Male 79.3%)
+  Age gap (accuracy): 4.5% (Young 84.7% vs Middle/Old ~80%)
+
+Key Finding: Demographic fairness disparities exist at Cleveland 
+site (>5% threshold) despite good aggregate accuracy - motivates 
+fairness-aware FL as future work / discussion point.
